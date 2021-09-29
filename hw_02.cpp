@@ -3,6 +3,9 @@
 //
 
 #include<iostream>
+#include<sstream>
+
+#define FRACTION 456.36789564738475387456
 
 using namespace std;
 
@@ -28,17 +31,19 @@ int main(int argc, char* argv[])
     long long ll64StarNumber { 434'234'345'345'456 };
     char c8SymbolZ { 'Z' };
     bool bFlag { false };
-    float fFraction { 456.36789564738475387456 };
-    double dbNewPrecision { 456.36789564738475387456  };
+    float fFraction { FRACTION };
+    double dbNewPrecision { FRACTION  };
 
-    cout << "1. Встроенные типы данных" << endl << endl;
-    cout << "i16NumObj: " << i16NumObj << endl;
-    cout << "i32Dist: " << i32Dist << endl;
-    cout << "ll64StarNumber: " << ll64StarNumber << endl;
-    cout << "c8SymbolZ: " << c8SymbolZ << endl;
-    cout << "bFlag: " << bFlag << endl;
-    cout << "fFraction: " << fFraction << endl;
-    cout << "dbNewPrecision: " << dbNewPrecision << endl << endl;
+    cout << "1. Встроенные типы данных:" << endl;
+    cout << "\ti16NumObj: " << i16NumObj << endl;
+    cout << "\ti32Dist: " << i32Dist << endl;
+    cout << "\tll64StarNumber: " << ll64StarNumber << endl;
+    cout << "\tc8SymbolZ: " << c8SymbolZ << endl;
+    cout << "\tbFlag: " << bFlag << endl;
+    cout.precision(25);
+    cout << "\tДробь:\t\t\t456.36789564738475387456" << endl;
+    cout << "\tfFraction:\t\t" << fFraction << endl;
+    cout << "\tdbNewPrecision:\t" << dbNewPrecision << endl << endl;
 
     return 0;
 }
