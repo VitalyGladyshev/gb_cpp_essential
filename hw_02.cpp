@@ -3,7 +3,7 @@
 //
 
 #include<iostream>
-#include <vector>
+#include<vector>
 
 #define FRACTION 456.36789564738475387456
 #define FIELD_SIZE 3
