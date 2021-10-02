@@ -48,6 +48,7 @@ int main()
     auto pcDataCube = make_unique<DataCube>();
     cout << "3. Трёхмерная матрица - куб данных" << endl;
     pcDataCube->PrintDataCube();
+    cout << "\tЗаписываем элемент DataCube[1][1][1] = " << d << endl;
     pcDataCube->SetItem(1, 1, 1, d);
     pcDataCube->PrintDataCube();
     cout << endl;

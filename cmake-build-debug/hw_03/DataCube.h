@@ -42,7 +42,7 @@ public:
 
 private:
     int*** _pppiDataCube;
-    int _iDataCubeSize = DATACUBE_SIZE;
+    const int _SIZE = DATACUBE_SIZE;
 };
 
 #endif //GB_CPP_ESSENTIAL_DATACUBE_H
