@@ -51,6 +51,7 @@ int main()
     cout << "\tЗаписываем элемент DataCube[1][1][1] = " << d << endl;
     pcDataCube->SetItem(1, 1, 1, d);
     pcDataCube->PrintDataCube();
+    cout << "\tЧитаем элемент DataCube[1][1][1]: " << pcDataCube->GetItem(1, 1, 1) << endl;
     cout << endl;
 
     //Задание 4
@@ -62,4 +63,6 @@ int main()
     cout << "\ta = " << iU << "  b = " << iX << "  c = " << iY << "  d = " << iZ << endl;
     cout.precision(8);
     cout << "\ta * (b + (c / d)) = " << expression_calculating(iU, iX, iY, iZ) << endl  << endl;
+
+    return 0;
 }

@@ -33,8 +33,8 @@ DataCube::~DataCube()
 int DataCube::GetItem(const unsigned int iLevel, const unsigned int iRow, const unsigned int iColumn) const
 {
     if (iLevel && (iLevel < _SIZE))
-        if (iRow && (iLevel < _SIZE))
-            if (iColumn && (iLevel < _SIZE))
+        if (iRow && (iRow < _SIZE))
+            if (iColumn && (iColumn < _SIZE))
                 return *(*(*(_pppiDataCube+iLevel)+iRow)+iColumn);
     return -1;
 }
@@ -43,8 +43,8 @@ int DataCube::SetItem(const unsigned int iLevel, unsigned const int iRow, const 
                       const unsigned int iItem)
 {
     if (iLevel && (iLevel < _SIZE))
-        if (iRow && (iLevel < _SIZE))
-            if (iColumn && (iLevel < _SIZE))
+        if (iRow && (iRow < _SIZE))
+            if (iColumn && (iColumn < _SIZE))
             {
                 *(*(*(_pppiDataCube+iLevel)+iRow)+iColumn) = iItem;
                 return *(*(*(_pppiDataCube+iLevel)+iRow)+iColumn);
