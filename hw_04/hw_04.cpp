@@ -52,8 +52,16 @@ unsigned int get_unsigned_int(const string& str_request)
 
 bool prime_test(const unsigned int& ui_number)
 {
+    if(ui_number == 2)
+        return true;
+    if((ui_number < 2) || !(ui_number % 2))
+        return false;
 
-    return false;
+    for(int i = 3; i < ui_number; i += 2)
+        if(!(ui_number % i))
+            return false;
+
+    return true;
 }
 
 int main()
@@ -88,14 +96,19 @@ int main()
     //Задание 4
     cout << "Задание 4 проверка является ли число простым " << endl;
 
-    unsigned int ui_Digit {get_unsigned_int("\tВведите целое положительное число: ")};
+    for(int i = 0; i < 24; i++)
+    {
+        if(prime_test(i))
+            cout << "\tЧисло " << i << " простое " << endl;
+        else
+            cout << "\tЧисло " << i << " не является простым " << endl;
+    }
+
+    unsigned int ui_Digit {get_unsigned_int("\n\tВведите целое положительное число: ")};
     if(prime_test(ui_Digit))
-        cout << "\tЧисло является простым " << endl << endl;
+        cout << "\tЧисло прострое" << endl << endl;
     else
         cout << "\tЧисло не является простым " << endl << endl;
-
-    //Задание 5
-    cout << "Задание 5" << endl;
 
     return 0;
 }
