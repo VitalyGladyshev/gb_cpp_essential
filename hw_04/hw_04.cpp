@@ -50,6 +50,7 @@ unsigned int get_unsigned_int(const string& str_request)
     return static_cast<unsigned int>(i_res);
 }
 
+//Проверка является ли число простым
 bool prime_test(const unsigned int& ui_number)
 {
     if(ui_number == 2)
@@ -62,6 +63,19 @@ bool prime_test(const unsigned int& ui_number)
             return false;
 
     return true;
+}
+
+//Проверка на високосный год
+bool leap_year_test(const unsigned int& ui_year)
+{
+    if(!(ui_year % 400))
+        return true;
+    if(!(ui_year % 100))
+        return false;
+    if(ui_year % 4)
+        return false;
+    else
+        return true;
 }
 
 int main()
@@ -94,21 +108,38 @@ int main()
     cout << endl << endl;
 
     //Задание 4
-    cout << "Задание 4 проверка является ли число простым " << endl;
+    cout << "Задание 4 проверка является ли число простым" << endl;
 
     for(int i = 0; i < 24; i++)
     {
         if(prime_test(i))
-            cout << "\tЧисло " << i << " простое " << endl;
+            cout << "\tЧисло " << i << " простое" << endl;
         else
-            cout << "\tЧисло " << i << " не является простым " << endl;
+            cout << "\tЧисло " << i << " не является простым" << endl;
     }
 
     unsigned int ui_Digit {get_unsigned_int("\n\tВведите целое положительное число: ")};
     if(prime_test(ui_Digit))
         cout << "\tЧисло прострое" << endl << endl;
     else
-        cout << "\tЧисло не является простым " << endl << endl;
+        cout << "\tЧисло не является простым" << endl << endl;
+
+    //Задание 5
+    cout << "Задание 5 проверка на високосный год" << endl;
+
+    for(auto year : {3, 4, 7, 8, 100, 399, 400, 500, 800})
+    {
+        if(leap_year_test(year))
+            cout << "\tГод " << year << " високосный" << endl;
+        else
+            cout << "\tГод " << year << " не високосный" << endl;
+    }
+
+    unsigned int ui_year {get_unsigned_int("\n\tВведите целое положительное число: ")};
+    if(leap_year_test(ui_year))
+        cout << "\tГод високосный" << endl << endl;
+    else
+        cout << "\tГод не високосный" << endl << endl;
 
     return 0;
 }
