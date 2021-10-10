@@ -47,23 +47,30 @@ void array_displacement(vector<int>& vArray, int iDisplacement)
     if(iDisplacement < 0)
         bNeg = true;
 
-    iDisplacement = abs(iDisplacement);
-    iDisplacement %= static_cast<int>(vArray.size());
+    unsigned long ulDisplacement = abs(iDisplacement);
+    ulDisplacement %= vArray.size();
 
-    if(!iDisplacement)
+    if(!ulDisplacement)
         return;
 
     if(bNeg)
-        iDisplacement = static_cast<int>(vArray.size()) - iDisplacement;
+        ulDisplacement = vArray.size() - ulDisplacement;
 
     deque<int> deqTemp;
-    for(unsigned long iterator = vArray.size() - iDisplacement, i = 0;
+    for(unsigned long iterator = vArray.size() - ulDisplacement, i = 0;
         i < vArray.size();
         i++,  iterator = iterator + 1 < vArray.size() ? iterator + 1: 0)
             deqTemp.push_back(vArray[iterator]);
 
     for(int i = 0; i < vArray.size(); i++)
         vArray[i] = deqTemp[i];
+}
+
+//Функция поиска баланса в массиве
+int balance_search(vector<int>& vArray)
+{
+
+    return 0;
 }
 
 int main() {
@@ -113,6 +120,28 @@ int main() {
     cout << endl;
 
     //Задание 5
-    cout << "Задание 5" << endl;
+    cout << "Задание 5 " << endl;
+    cout << "\tТестовый массив:" << endl;
+    vector<int> vTest_1 {1, 1, 1, 2, 1};
+    print_array(vTest_1);
+    if(int iBalance = balance_search(vTest_1))
+        cout << "\tТочка баланса: " << iBalance << endl << endl;
+    else
+        cout << "\tТочка баланса отсутствует" << endl << endl;
 
+    cout << "\tТестовый массив:" << endl;
+    vector<int> vTest_2 {2, 1, 1, 2, 1};
+    print_array(vTest_2);
+    if(int iBalance = balance_search(vTest_2))
+        cout << "\tТочка баланса: " << iBalance << endl << endl;
+    else
+        cout << "\tТочка баланса отсутствует" << endl << endl;
+
+    cout << "\tТестовый массив:" << endl;
+    vector<int> vTest_3 {10, 1, 2, 3, 4};
+    print_array(vTest_3);
+    if(int iBalance = balance_search(vTest_3))
+        cout << "\tТочка баланса: " << iBalance << endl << endl;
+    else
+        cout << "\tТочка баланса отсутствует" << endl << endl;
 }
