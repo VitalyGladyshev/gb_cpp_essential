@@ -4,22 +4,25 @@
 
 #include <iostream>
 #include <vector>
+#include <deque>
 
 using namespace std;
 
-//Выводит массив double чисел на экран. Параметры функции это сам массив и его размер.
-void print_array(const double* dbArray, const int& iSize)
+//Выводит массив чисел на экран. Параметры функции это сам массив и его размер.
+template <typename T>
+void print_array(const T* pArray, const int& iSize)
 {
     for(int i=0; i<iSize; i++)
-        cout << "\tЭлемент " << i+1 << ":\t" << dbArray[i] << endl;
+        cout << "\tЭлемент " << i+1 << ":\t" << pArray[i] << endl;
 }
 
 //Выводит массив unsigned char чисел на экран. Параметры функции это ссылка на вектор
-void print_array(const vector<unsigned char>& vArray)
+template <typename TD>
+void print_array(const vector<TD>& vArray)
 {
     cout << "\t\t";
     for(auto el : vArray)
-        cout << static_cast<int>(el) << " ";
+        cout << static_cast<int>(el) << "\t";
     cout << endl;
 }
 
@@ -28,6 +31,39 @@ void array_inversion(vector<unsigned char>& vArray)
 {
     for(auto& el : vArray)
         el = el ? 0 : 1;
+}
+
+//Функция, инициализирует массив последовательностью 1 4 7 10 13 16 19 22
+void array_initialisation(int* pArray, const int iSize)
+{
+    for(int i = 0, mlt = 1; i<iSize; i++, mlt+=3)
+        pArray[i] = mlt;
+}
+
+//Функция, сдвига массива на iDisplacement позиций
+void array_displacement(vector<int>& vArray, int iDisplacement)
+{
+    bool bNeg = false;
+    if(iDisplacement < 0)
+        bNeg = true;
+
+    iDisplacement = abs(iDisplacement);
+    iDisplacement %= static_cast<int>(vArray.size());
+
+    if(!iDisplacement)
+        return;
+
+    if(bNeg)
+        iDisplacement = static_cast<int>(vArray.size()) - iDisplacement;
+
+    deque<int> deqTemp;
+    for(unsigned long iterator = vArray.size() - iDisplacement, i = 0;
+        i < vArray.size();
+        i++,  iterator = iterator + 1 < vArray.size() ? iterator + 1: 0)
+            deqTemp.push_back(vArray[iterator]);
+
+    for(int i = 0; i < vArray.size(); i++)
+        vArray[i] = deqTemp[i];
 }
 
 int main() {
@@ -52,9 +88,29 @@ int main() {
 
     //Задание 3
     cout << "Задание 3" << endl;
+    const int SIZE_ARRAY = 8;
+    int* piArrayOf8 = new int[SIZE_ARRAY];
+    array_initialisation(piArrayOf8, SIZE_ARRAY);
+    print_array(piArrayOf8, SIZE_ARRAY);
+    cout << endl;
+    delete[] piArrayOf8;
 
     //Задание 4
     cout << "Задание 4" << endl;
+
+    vector<int>(viDisplacement) {-7, -2, -1, 0, 1, 2, 3, 8, 9, 10};
+    for(auto displacement : viDisplacement)
+    {
+        vector<int>(viArray) {2, 4, 6, 8, 10, 12, 14, 16, 18};
+        cout << "\tСдвиг: " << displacement << endl;
+        cout << "\tМассив до сдвига:" << endl;
+        print_array(viArray);
+        array_displacement(viArray, displacement);
+        cout << "\tМассив после сдвига:" << endl;
+        print_array(viArray);
+        cout << endl;
+    }
+    cout << endl;
 
     //Задание 5
     cout << "Задание 5" << endl;
