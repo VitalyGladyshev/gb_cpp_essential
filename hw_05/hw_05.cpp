@@ -195,4 +195,15 @@ int main() {
     }
     else
         cout << "\tТочка баланса отсутствует" << endl << endl;
+
+    cout << "\tТестовый массив:" << endl;
+    vector<int> vTest_5 {10, 10};
+    print_array(vTest_5);
+    if(int iBalance = balance_search(vTest_5))
+    {
+        cout << "\tТочка баланса: " << iBalance << endl;
+        print_array_border(vTest_5, iBalance);
+    }
+    else
+        cout << "\tТочка баланса отсутствует" << endl << endl;
 }
