@@ -16,7 +16,7 @@ void print_array(const T* pArray, const int& iSize)
         cout << "\tЭлемент " << i+1 << ":\t" << pArray[i] << endl;
 }
 
-//Выводит массив unsigned char чисел на экран. Параметры функции это ссылка на вектор
+//Выводит массив на экран. Параметры функции это ссылка на вектор
 template <typename TD>
 void print_array(const vector<TD>& vArray)
 {
@@ -69,8 +69,39 @@ void array_displacement(vector<int>& vArray, int iDisplacement)
 //Функция поиска баланса в массиве
 int balance_search(vector<int>& vArray)
 {
-
+    if(vArray.size() < 2)
+        return 0;
+    for(int iBorder = 1; iBorder < vArray.size(); iBorder++)
+    {
+        int iL = vArray[0], iR = vArray[vArray.size()-1];
+        for(int iIter = 1; iIter < vArray.size()-1;iIter++)
+        {
+            if(iIter < iBorder)
+                iL += vArray[iIter];
+            else
+                iR += vArray[iIter];
+        }
+        cout << "\t\tborder: " << iBorder << " iL: " << iL << " iR: " << iR << endl;
+        if(iL == iR)
+            return iBorder;
+        if(iL > iR)
+            return 0;
+    }
     return 0;
+}
+
+//Выводит массив на экран и уазывает границу баланса
+template <typename TD>
+void print_array_border(const vector<TD>& vArray, const int& iBorder)
+{
+    cout << "\t\t";
+    for(unsigned long i = 0; i < vArray.size(); i++)
+    {
+        if(i == iBorder)
+            cout << "||\t";
+        cout << vArray[i] << "\t";
+    }
+    cout << endl << endl;
 }
 
 int main() {
@@ -125,7 +156,10 @@ int main() {
     vector<int> vTest_1 {1, 1, 1, 2, 1};
     print_array(vTest_1);
     if(int iBalance = balance_search(vTest_1))
-        cout << "\tТочка баланса: " << iBalance << endl << endl;
+    {
+        cout << "\tТочка баланса: " << iBalance << endl;
+        print_array_border(vTest_1, iBalance);
+    }
     else
         cout << "\tТочка баланса отсутствует" << endl << endl;
 
@@ -133,7 +167,10 @@ int main() {
     vector<int> vTest_2 {2, 1, 1, 2, 1};
     print_array(vTest_2);
     if(int iBalance = balance_search(vTest_2))
-        cout << "\tТочка баланса: " << iBalance << endl << endl;
+    {
+        cout << "\tТочка баланса: " << iBalance << endl;
+        print_array_border(vTest_2, iBalance);
+    }
     else
         cout << "\tТочка баланса отсутствует" << endl << endl;
 
@@ -141,7 +178,21 @@ int main() {
     vector<int> vTest_3 {10, 1, 2, 3, 4};
     print_array(vTest_3);
     if(int iBalance = balance_search(vTest_3))
-        cout << "\tТочка баланса: " << iBalance << endl << endl;
+    {
+        cout << "\tТочка баланса: " << iBalance << endl;
+        print_array_border(vTest_3, iBalance);
+    }
+    else
+        cout << "\tТочка баланса отсутствует" << endl << endl;
+
+    cout << "\tТестовый массив:" << endl;
+    vector<int> vTest_4 {10, 10, 10, 10, 10, 10, 20, 20};
+    print_array(vTest_4);
+    if(int iBalance = balance_search(vTest_4))
+    {
+        cout << "\tТочка баланса: " << iBalance << endl;
+        print_array_border(vTest_4, iBalance);
+    }
     else
         cout << "\tТочка баланса отсутствует" << endl << endl;
 }
