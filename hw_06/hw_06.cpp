@@ -107,7 +107,7 @@ void new_text_file(ofstream& file, const string& str_request)
     while(file_creation_fault);
 }
 
-//Функция создания текстового файла
+// Функция генерации произвольного содержимого текстового файла
 void text_file_generate_context(ofstream& file)
 {
     for(int iFileLength = 50 + rand() % 50; iFileLength; iFileLength--)
