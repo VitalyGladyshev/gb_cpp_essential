@@ -3,6 +3,8 @@
 //
 
 #include <iostream>
+#include <ios>
+#include <fstream>
 #include <cstdlib>
 #include <ctime>
 
@@ -83,6 +85,35 @@ void fill_by_random(int** ppArray, const int& SIZE)
             ppArray[i][j] = 1 + rand() % 10;
 }
 
+//Функция создания текстового файла
+void new_text_file(ofstream& file, const string& str_request)
+{
+    bool file_creation_fault = false;
+    do
+    {
+        cout << str_request;
+        string str_income;
+        cin >> str_income;
+        try
+        {
+            file.open(str_income + ".txt", ofstream::out | ofstream::trunc);
+        }
+        catch(ofstream::failure& err)
+        {
+            cout << "\tОшибка открытия файла!" << endl;
+            file_creation_fault = true;
+        }
+    }
+    while(file_creation_fault);
+}
+
+//Функция создания текстового файла
+void text_file_generate_context(ofstream& file)
+{
+    for(int iFileLength = 50 + rand() % 50; iFileLength; iFileLength--)
+        file << static_cast<char>(48 + rand() % 74);
+}
+
 int main()
 {
     setlocale(LC_ALL, "Russian");
@@ -132,6 +163,14 @@ int main()
 
     //Задание 3
     cout << "Задание 3" << endl;
+    ofstream file_out;
+    new_text_file(file_out, "\tВведите имя первого файла: ");
+    text_file_generate_context(file_out);
+    file_out.close();
+
+    new_text_file(file_out, "\tВведите имя второго файла: ");
+    text_file_generate_context(file_out);
+    file_out.close();
 
     cout << endl;
 
