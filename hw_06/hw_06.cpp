@@ -85,18 +85,21 @@ void fill_by_random(int** ppArray, const int& SIZE)
             ppArray[i][j] = 1 + rand() % 10;
 }
 
-//Функция создания текстового файла
-void new_text_file(ofstream& file, const string& str_request)
+//Функция открытия файла для записи. Имя файла вводится пользователем
+string text_file_to_write(ofstream& file, const string& str_request, const _Ios_Openmode open_mode)
 {
     bool file_creation_fault = false;
+    string str_income;
+
     do
     {
         cout << str_request;
-        string str_income;
         cin >> str_income;
+        str_income += ".txt";
+
         try
         {
-            file.open(str_income + ".txt", ofstream::out | ofstream::trunc);
+            file.open(str_income, open_mode);
         }
         catch(ofstream::failure& err)
         {
@@ -105,6 +108,8 @@ void new_text_file(ofstream& file, const string& str_request)
         }
     }
     while(file_creation_fault);
+
+    return str_income;
 }
 
 // Функция генерации произвольного содержимого текстового файла
@@ -112,6 +117,26 @@ void text_file_generate_context(ofstream& file)
 {
     for(int iFileLength = 50 + rand() % 50; iFileLength; iFileLength--)
         file << static_cast<char>(48 + rand() % 74);
+}
+
+//Функция копирования содержимого файла
+bool file_copy(const string& source_file_name, ofstream& destination_file)
+{
+    ifstream file_source;
+    file_source.open(source_file_name, ifstream::binary);
+    if(file_source.is_open())
+    {
+        long lSize = file_source.seekg(0, ios::end).tellg();
+        file_source.seekg(0);
+        auto* cBuf = new char[lSize+1];
+        file_source.read(cBuf, lSize);
+        destination_file.write(cBuf, lSize);
+        delete[] cBuf;
+        file_source.close();
+    }
+    else
+        return false;
+    return true;
 }
 
 int main()
@@ -144,7 +169,7 @@ int main()
     //Задание 2
     cout << "Задание 2" << endl;
 
-    srand(static_cast<unsigned int>(time(0)));
+    srand(static_cast<unsigned int>(time(nullptr)));
 
     int** ppArray;
     const int SIZE = 4;
@@ -164,11 +189,15 @@ int main()
     //Задание 3
     cout << "Задание 3" << endl;
     ofstream file_out;
-    new_text_file(file_out, "\tВведите имя первого файла: ");
+    string first_file_name = text_file_to_write(file_out,
+                                                "\tВведите имя первого файла: ",
+                                                ofstream::out | ofstream::trunc);
     text_file_generate_context(file_out);
     file_out.close();
 
-    new_text_file(file_out, "\tВведите имя второго файла: ");
+    string second_file_name = text_file_to_write(file_out,
+                                                 "\tВведите имя второго файла: ",
+                                                 ofstream::out | ofstream::trunc);
     text_file_generate_context(file_out);
     file_out.close();
 
@@ -176,7 +205,19 @@ int main()
 
     //Задание 4
     cout << "Задание 4" << endl;
-    new_text_file(file_out, "\tВведите имя файла для конкатенации содержимого первых двух файлов: ");
+    text_file_to_write(file_out,
+                       "\tВведите имя файла для конкатенации содержимого первых двух файлов: ",
+                       ofstream::out | ofstream::app | ofstream::binary);
+
+    if(file_copy(first_file_name, file_out))
+        cout << "\tУспешно скопирован первый файл" << endl;
+    else
+        cout << "\tОшибка копирования первого файла" << endl;
+
+    if(file_copy(second_file_name, file_out))
+        cout << "\tУспешно скопирован второй файл" << endl;
+    else
+        cout << "\tОшибка копирования второго файла" << endl;
 
     file_out.close();
     cout << endl;
