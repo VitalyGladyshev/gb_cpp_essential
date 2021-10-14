@@ -224,6 +224,26 @@ int main()
 
     //Задание 5
     cout << "Задание 5" << endl;
-
+    ifstream file_search("text_for_find.txt");
+    if(file_search.is_open())
+    {
+        string buffer;
+        bool bSuccess = false;
+        while(!file_search.eof())
+        {
+            getline(file_search, buffer);
+            if (buffer.find("language") != string::npos) // строка была найдена?
+            {
+                cout << "\tНайдено слово \"language\"!";
+                bSuccess = true;
+                break;
+            }
+        }
+        if(!bSuccess)
+            cout << "\tСлово \"language\" не найдено";
+        file_search.close();
+    }
+    else
+        cout << "\tОшибка открытия файла: text_for_find.txt" << endl;
     cout << endl;
 }
