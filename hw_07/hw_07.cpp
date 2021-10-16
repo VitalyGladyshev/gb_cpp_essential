@@ -5,16 +5,21 @@
 # include "mylib.h"
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
-int main() {
+int main()
+{
     setlocale(LC_ALL, "Russian");
 
     //Задание 1/5
     cout << "Задание 1/5" << endl;
-
-    cout << endl;
+    vector<float> vfFloatVector;
+    vfFloatVector.resize(10);
+    MyLib::FillByProgression(vfFloatVector);
+    MyLib::PrintArray(vfFloatVector);
+    cout << "\tКоличество отрицательных чисел: " <<MyLib::NegativeNumberCount(vfFloatVector) << endl << endl;
 
     //Задание 2
     cout << "Задание 2" << endl;
