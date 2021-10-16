@@ -34,4 +34,30 @@ namespace MyLib
                 cnt++;
         return cnt;
     }
+
+    // Функция считывания целого числа из консоли
+    int GetInt(const std::string& str_request)
+    {
+        std::string str_income;
+        bool b_convert_fault = true;
+        int i_res;
+
+        do
+        {
+            std::cout << str_request;
+            std::cin >> str_income;
+            try
+            {
+                i_res = std::stoi(str_income);
+                b_convert_fault = false;
+            }
+            catch(std::invalid_argument& err)
+            {
+                std::cout << "\tОшибка: " << err.what() << ". Введённое значение не является числом" << std::endl;
+            }
+        }
+        while(b_convert_fault);
+
+        return i_res;
+    }
 }

@@ -7,6 +7,9 @@
 #include <iostream>
 #include <vector>
 
+#define IS_IN_RANGE(iNumber, iBorder) cout << (((iNumber >= 0)&&(iNumber < iBorder)) ? \
+    "true" : "false") << endl << endl;
+
 using namespace std;
 
 int main()
@@ -23,8 +26,10 @@ int main()
 
     //Задание 2
     cout << "Задание 2" << endl;
-
-    cout << endl;
+    int iNumber = MyLib::GetInt("\tВведите целое число для проверки: ");
+    int iBorder = MyLib::GetInt("\tВведите верхнюю границу диапазона для проверки числа: ");
+    cout << "\tРезультат проверки числа на попадание в диапазон [0, " << iBorder << "): ";
+    IS_IN_RANGE(iNumber, iBorder);
 
     //Задание 3
     cout << "Задание 3" << endl;

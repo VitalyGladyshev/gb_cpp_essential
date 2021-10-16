@@ -18,6 +18,9 @@ namespace MyLib
 
     //Подсчитываем количество отрицательных чисел
     int NegativeNumberCount(const std::vector<float>& vfArray);
+
+    // Функция считывания целого числа из консоли
+    int GetInt(const std::string& str_request);
 }
 
 #endif //GB_CPP_ESSENTIAL_MYLIB_H
