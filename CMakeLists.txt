@@ -3,5 +3,9 @@ project(gb_cpp_essential)
 
 set(CMAKE_CXX_STANDARD 17)
 
+add_library(mylib STATIC hw_07/mylib.cpp)
+
 add_executable(gb_cpp_essential
-        hw_07/hw_07.cpp hw_07/mylib.h hw_07/mylib.cpp)
+        hw_07/hw_07.cpp)
+
+target_link_libraries(gb_cpp_essential mylib)

@@ -17,14 +17,6 @@ namespace MyLib
         }
     }
 
-    //Выводит массив чисел на экран.
-    void PrintArray(const std::vector<float>& vfArray)
-    {
-        int i = 1;
-        for(auto& el : vfArray)
-            std::cout << "\tЭлемент " << i++ << ":\t" << el << std::endl;
-    }
-
     //Подсчитываем количество отрицательных чисел
     int NegativeNumberCount(const std::vector<float>& vfArray)
     {

@@ -14,7 +14,13 @@ namespace MyLib
     void FillByProgression(std::vector<float>& vfArray);
 
     //Выводит массив чисел на экран.
-    void PrintArray(const std::vector<float>& vfArray);
+    template <typename T>
+    void PrintArray(const std::vector<T>& vArray)
+    {
+        int i = 1;
+        for(auto& el : vArray)
+            std::cout << "\tЭлемент " << i++ << ":\t" << el << std::endl;
+    }
 
     //Подсчитываем количество отрицательных чисел
     int NegativeNumberCount(const std::vector<float>& vfArray);
