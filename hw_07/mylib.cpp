@@ -5,9 +5,9 @@
 #include "mylib.h"
 
 #define SwapINT(a, b)  if(viVectorForSort[j-1] > viVectorForSort[j]) { \
-int temp = viVectorForSort[j]; \
-viVectorForSort[j] = viVectorForSort[j-1]; \
-viVectorForSort[j-1] = temp; }
+    int temp = viVectorForSort[j]; \
+    viVectorForSort[j] = viVectorForSort[j-1]; \
+    viVectorForSort[j-1] = temp; }
 
 namespace MyLib
 {
