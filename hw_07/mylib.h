@@ -19,7 +19,9 @@ namespace MyLib
     {
         int i = 1;
         for(auto& el : vArray)
-            std::cout << "\tЭлемент " << i++ << ":\t" << el << std::endl;
+            //std::cout << "\tЭлемент " << i++ << ":\t" << el << std::endl;
+            std::cout << "\t" << el;
+        std::cout << std::endl;
     }
 
     //Подсчитываем количество отрицательных чисел
@@ -27,6 +29,24 @@ namespace MyLib
 
     // Функция считывания целого числа из консоли
     int GetInt(const std::string& str_request);
+
+    //Сортировка массива пузырьком
+    void BubbleSorting(std::vector<int>& viVectorForSort);
+
+#pragma pack(push, 1)
+    struct Employee
+    {
+        unsigned int uiSalary;
+        short sRoom;
+        short sDepartment;
+        short sScore;
+        unsigned char ucAge;
+        unsigned char ucCode;
+    };
+#pragma pack(pop)
+
+    //Вывод структуры Employee
+    void EmployeePrint(const Employee* pEmployee, const unsigned int& Iter);
 }
 
 #endif //GB_CPP_ESSENTIAL_MYLIB_H

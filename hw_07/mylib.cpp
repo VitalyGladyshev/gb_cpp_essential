@@ -4,6 +4,11 @@
 
 #include "mylib.h"
 
+#define SwapINT(a, b)  if(viVectorForSort[j-1] > viVectorForSort[j]) { \
+int temp = viVectorForSort[j]; \
+viVectorForSort[j] = viVectorForSort[j-1]; \
+viVectorForSort[j-1] = temp; }
+
 namespace MyLib
 {
     //Заполняем масив прогрессией чисел от отрицательных до положительных
@@ -51,5 +56,26 @@ namespace MyLib
         while(b_convert_fault);
 
         return i_res;
+    }
+
+    //Сортировка массива пузырьком
+    void BubbleSorting(std::vector<int>& viVectorForSort)
+    {
+        for(unsigned long i = 1; i < viVectorForSort.size(); i++)
+            for(unsigned long j = 1; j < viVectorForSort.size(); j++)
+                SwapINT(a, b)
+    }
+
+    //Вывод структуры Employee
+    void EmployeePrint(const Employee* pEmployee, const unsigned int& uiIter)
+    {
+        std::cout << "\tСотрудник " << uiIter + 1 << std::endl;
+        std::cout << "\t\tВозраст: " << static_cast<int>(pEmployee[uiIter].ucAge) << std::endl;
+        std::cout << "\t\tКод: " << static_cast<int>(pEmployee[uiIter].ucCode) << std::endl;
+        std::cout << "\t\tОтдел: " << pEmployee[uiIter].sDepartment << std::endl;
+        std::cout << "\t\tКомната: " << pEmployee[uiIter].sRoom << std::endl;
+        std::cout << "\t\tРейтинг: " << pEmployee[uiIter].sScore << std::endl;
+        std::cout << "\t\tЗарплата: " << pEmployee[uiIter].uiSalary << std::endl;
+        std::cout << "\t\tРазмер структуры Employee: " << sizeof(pEmployee[uiIter]) << std::endl << std::endl;
     }
 }
