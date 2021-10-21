@@ -20,14 +20,12 @@ class TicTacToe
         OMark
     };
 
-//Структура для игры в крестики-нолики
-
+//Массив для игры в крестики-нолики
+    vector<vector<ETicTacToe>> _vvGameField;
 
     const int _FieldSize;
 
 public:
-    vector<vector<ETicTacToe>> _vvGameField;
-
     TicTacToe();
     ~TicTacToe();
 
@@ -36,6 +34,5 @@ public:
     //Очистка экрана
     void Clear();
 };
-
 
 #endif //GB_CPP_ESSENTIAL_TICTACTOE_H
