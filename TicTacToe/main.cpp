@@ -12,7 +12,10 @@ int main()
 {
     setlocale(LC_ALL, "Russian");
 
+    TicTacToe TTTGame;
 
+    TTTGame.PrintField();
+    TTTGame.PrintField();
 
     return 0;
 }
