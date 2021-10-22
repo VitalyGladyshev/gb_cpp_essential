@@ -14,8 +14,9 @@ int main()
 
     TicTacToe TTTGame;
 
-    TTTGame.PrintField();
-    TTTGame.PrintField();
+    do {
+        TTTGame.MakeTurn();
+    } while(false);
 
     return 0;
 }
