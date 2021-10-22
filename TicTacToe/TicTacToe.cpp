@@ -158,6 +158,7 @@ bool TicTacToe::MakeTurn()
 {
     PrintField();
 
+
     if(true)
     {
         cout << "\nСделайте ход:" << endl;
