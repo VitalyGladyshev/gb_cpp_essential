@@ -98,6 +98,7 @@ void TicTacToe::StartDialog()
 void TicTacToe::PrintField()
 {
     Clear();
+    cout << "\nХод " << _iTurnNumber << endl << endl;
     cout << "\t-------------" << endl;
     for (int i = 0; i < _FieldSize; i++)
     {
@@ -155,22 +156,16 @@ bool TicTacToe::CheckWin(pair<int, int>LastTurnCoord)
 //Сделать ход
 bool TicTacToe::MakeTurn()
 {
-    Clear();
-    cout << endl;
-    cout << "Ход " << _iTurnNumber << endl << endl;
     PrintField();
 
     if(true)
     {
-        cout << "Сделайте ход:" << endl;
+        cout << "\nСделайте ход:" << endl;
         auto row = GetCoord("\tВведите номер строки (1-3): ");
         auto col = GetCoord("\tВведите номер столбца (1-3): ");
         _vvGameField[row][col] = XMark;
     }
 
-    Clear();
-    cout << endl;
-    cout << "Ход " << _iTurnNumber << endl << endl;
     PrintField();
 
     if (CheckWin(pair(1, 1)))
