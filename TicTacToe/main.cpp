@@ -6,17 +6,18 @@
 
 #include "TicTacToe.h"
 
-using namespace std;
-
 int main()
 {
     setlocale(LC_ALL, "Russian");
 
-    TicTacToe TTTGame;
+    std::string sAnswer;
+    do{
+        TicTacToe TTTGame;
+        while(!TTTGame.MakeTurn());
 
-    do {
-        TTTGame.MakeTurn();
-    } while(false);
+        std::cout << "Хотите сыграть ещё раз? (Д/н): ";
+        std::cin >> sAnswer;
+    }while(sAnswer == "Д" || sAnswer == "д" || sAnswer == "Y" || sAnswer == "y");
 
     return 0;
 }

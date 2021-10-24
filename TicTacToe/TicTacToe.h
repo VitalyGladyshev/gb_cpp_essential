@@ -13,30 +13,27 @@ using namespace std;
 class TicTacToe
 {
 //Перечисление с вариантами значений для игры в крестики-нолики
-    enum ETicTacToe
+    enum class ETicTacToeMark
     {
         Empty,
         XMark,
         OMark
     };
 
-    enum EPlayerType
+    enum class EPlayerType
     {
         Human,
         Computer
     };
 
 //Массив для игры в крестики-нолики
-    vector<vector<ETicTacToe>> _vvGameField;
+    vector<vector<ETicTacToeMark>> _vvGameField;
     const int _FieldSize;
-    EPlayerType _Player1;
-    EPlayerType _Player2;
-    bool bCurrentPlayerIs1;
+    vector<EPlayerType> _PlayerTypeVector;
+    bool _bCurrentPlayerIsNotOne;
     int _iTurnNumber;
-
-public:
-    TicTacToe();
-    ~TicTacToe();
+    int _iEmptyFieldsCount;
+    int _AILevel;
 
     // Функция считывания типа игрока из консоли
     EPlayerType GetPlayerType(const std::string& str_request);
@@ -44,12 +41,23 @@ public:
     void StartDialog();
     //Вывод игрового поля на экран
     void PrintField();
-    // Функция считывания строки\столбца
+    // Функция считывания строки\столбца игрока человека
     int GetCoord(const std::string& str_request);
+    // Запрос уровня сложности
+    int GetAILevel();
+    // Поптка AI выиграть/предотвратить поражение одним ходом
+    pair<int, int> AIAttempt(const bool bCurrentPlayerIsNotOne);
+    // Функция вычисления строки\столбца игрока компьютера
+    std::pair<int, int> GetAICoord();
     //Очистка экрана
     void Clear();
     //Проверка на выигрыш
     bool CheckWin(pair<int, int>LastTurnCoord);
+
+public:
+    TicTacToe();
+    ~TicTacToe();
+
     //Сделать ход
     bool MakeTurn();
 };
